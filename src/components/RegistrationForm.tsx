@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './RegistrationForm.scss';
 
 interface InputProps {
   id: string;
@@ -36,10 +37,7 @@ interface FormData {
 }
 
 interface FormErrors {
-  name?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
+  [key: string]: string;
 }
 
 const RegistrationForm: React.FC = () => {
@@ -54,21 +52,17 @@ const RegistrationForm: React.FC = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const validateForm = (): boolean => {
     const formErrors: FormErrors = {};
-    if (!formData.name) formErrors.name = '* Name is required';
-    if (!formData.email) formErrors.email = '* Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      formErrors.email = 'Email is invalid';
-    if (!formData.password) formErrors.password = '* Password is required';
+    if (!formData.name) formErrors.name = 'Name is required';
+    if (!formData.email) formErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) formErrors.email = 'Invalid email';
+    if (!formData.password) formErrors.password = 'Password is required';
     if (formData.password !== formData.confirmPassword)
-      formErrors.confirmPassword = '* Passwords must match';
+      formErrors.confirmPassword = 'Passwords must match';
 
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
@@ -77,14 +71,14 @@ const RegistrationForm: React.FC = () => {
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form submitted successfully', formData);
+      console.log('Form submitted', formData);
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Registration Form</h2>
-      <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+    <div className="registration-form container mt-5 bg-danger">
+      <h2 className="text-center mb-4">Register</h2>
+      <form onSubmit={handleSubmit} noValidate>
         <Input
           id="name"
           label="Name"

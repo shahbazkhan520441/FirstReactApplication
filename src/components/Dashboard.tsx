@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Use Link for routing
 import './Dashboard.scss'; // Import SCSS file
+import Bootstrap from './Bootstrap';
 import RegistrationForm from './RegistrationForm';
 
 const Dashboard: React.FC = () => {
@@ -14,8 +15,9 @@ const Dashboard: React.FC = () => {
         </p>
       </div>
 
-      <div className="form-container">
-        <RegistrationForm />
+      <div className="container">
+        <RegistrationForm/>
+        <Bootstrap />
       </div>
 
       <div className="text-center mt-4">
