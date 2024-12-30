@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'; // Use Link for routing
 import './Dashboard.scss'; // Import SCSS file
 import Bootstrap from './Bootstrap';
 import RegistrationForm from './RegistrationForm';
+import AutoCompleteLayout from './AutoCompleteLayout';
 
 const Dashboard: React.FC = () => {
   return (
@@ -17,7 +18,14 @@ const Dashboard: React.FC = () => {
 
       <div className="container">
         <RegistrationForm/>
+        <br></br>
+        <br></br>
         <Bootstrap />
+
+        <br>
+        </br>
+
+       
       </div>
 
       <div className="text-center mt-4">
@@ -26,6 +34,8 @@ const Dashboard: React.FC = () => {
           <button className="btn btn-register">Go to Registration Form</button>
         </Link>
       </div>
+
+      <AutoCompleteLayout/>
     </div>
   );
 };

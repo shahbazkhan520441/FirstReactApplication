@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RegistrationForm from './components/RegistrationForm';
 import Dashboard from './components/Dashboard';
 import Bootstrap from './components/Bootstrap';
+import AutoCompleteLayout from './components/AutoCompleteLayout';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/book/bootstrap" element={<Bootstrap />} />
+        <Route path="/autoCompleteLayout"  element={<AutoCompleteLayout/>}/>
       </Routes>
     </Router>
   );

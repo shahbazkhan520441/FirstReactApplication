@@ -76,7 +76,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <div className="registration-form container mt-5 bg-danger">
+    <div className="registration-form container mt-5 ">
       <h2 className="text-center mb-4">Register</h2>
       <form onSubmit={handleSubmit} noValidate>
         <Input
