@@ -1,6 +1,32 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import './RegistrationForm.scss';
-import Input from '../SharedComponents/input-text/Input-Text';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+interface InputProps {
+  id: string;
+  label: string;
+  type: string;
+  name: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+}
+
+const Input: React.FC<InputProps> = ({ id, label, type, name, value, onChange, error }) => (
+  <div className="mb-3">
+    <label htmlFor={id} className="form-label">
+      {label}
+    </label>
+    <input
+      id={id}
+      type={type}
+      name={name}
+      className={`form-control ${error ? 'is-invalid' : ''}`}
+      value={value}
+      onChange={onChange}
+    />
+    {error && <div className="invalid-feedback">{error}</div>}
+  </div>
+);
 
 interface FormData {
   name: string;
@@ -56,45 +82,50 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <form className="RegistrationForm" onSubmit={handleSubmit}>
-      <Input
-        id="name"
-        label="Name"
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-        error={errors.name}
-      />
-      <Input
-       id="email"
-        label="Email"
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        error={errors.email}
-      />
-      <Input
-       id="password"
-        label="Password"
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleInputChange}
-        error={errors.password}
-      />
-      <Input
-        id="confirmPassword"
-        label="Confirm Password"
-        type="password"
-        name="confirmPassword"
-        value={formData.confirmPassword}
-        onChange={handleInputChange}
-        error={errors.confirmPassword}
-      />
-      <button type="submit">Register</button>
-    </form>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Registration Form</h2>
+      <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <Input
+          id="name"
+          label="Name"
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          error={errors.name}
+        />
+        <Input
+          id="email"
+          label="Email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          error={errors.email}
+        />
+        <Input
+          id="password"
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          error={errors.password}
+        />
+        <Input
+          id="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleInputChange}
+          error={errors.confirmPassword}
+        />
+        <button type="submit" className="btn btn-primary w-100">
+          Register
+        </button>
+      </form>
+    </div>
   );
 };
 

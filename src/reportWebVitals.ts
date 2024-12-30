@@ -1,4 +1,3 @@
-// reportWebVitals.ts
 import { getCLS, getFID, getLCP } from 'web-vitals';
 
 export function reportWebVitals(onPerfEntry?: (metric: any) => void) {
